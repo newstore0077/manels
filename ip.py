@@ -1,7 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import requests
 import os
 from colorama import Fore
 from urlextract import URLExtract
+
+# ... rest of your code ...
 
 yl = Fore.YELLOW
 red = Fore.RED
