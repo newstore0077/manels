@@ -7,15 +7,18 @@ def get_domain(ip_address):
     except socket.herror:
         return None
 
-input_file = "ip.txt"
+input_file = input("Masukkan nama file input (misalnya, ip.txt): ")
 output_file = "output.txt"
 
-with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
-    for line in infile:
-        ip_address = line.strip()
-        if ip_address:
-            domain = get_domain(ip_address)
-            if domain:
-                outfile.write(f"{ip_address} -> {domain}\n")
-            else:
-                outfile.write(f"{ip_address} -> Tidak ditemukan domain\n")
+try:
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            ip_address = line.strip()
+            if ip_address:
+                domain = get_domain(ip_address)
+                result = f"{ip_address} -> {domain if domain else 'Tidak ditemukan domain'}"
+                print(result)
+                outfile.write(result + "\n")
+    print(f"Hasil telah disimpan di {output_file}")
+except FileNotFoundError:
+    print(f"File {input_file} tidak ditemukan. Pastikan file tersebut ada di direktori yang sama dengan script ini.")
